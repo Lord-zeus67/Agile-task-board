@@ -19,6 +19,10 @@
     padding:1rem;
     border: 1px solid greenyellow;
     box-shadow:0 4px 6px #000000;
+    display: inline-block;
+    vertical-align: top;
+    margin-right:2%;
+    margin-bottom:2%;
  }
 
 
