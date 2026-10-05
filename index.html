@@ -3,89 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agile-task-board</title>
+    <title>Agile Task Board - Layout Positioning</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
-<main class="kanban-board">
 
-    <section class="kanban-colummn">
-        <header class="colummn-header">
-            <h2>To do</h2>
+    <!-- Sticky Application Header -->
+    <header class="app-header">
+        <div class="header-brand">
+            <h1>Agile Task Board</h1>
+        </div>
+        <button class="btn-primary" id="open-modal-btn">+ New Task</button>
+    </header>
 
-        </header>
+    <!-- Main Board Container -->
+    <main class="kanban-board">
+        
+        <!-- To Do Column -->
+        <section class="kanban-column">
+            <header class="column-header">
+                <h2>To Do</h2>
+            </header>
 
-        <article class="task-card">
-            <span class="task-tag">backend</span>
-        <h3>setup database Schema</h3>
-        <P>degsin postgreSQL tables for users and tasks</P>
-        </article>
+            <!-- Task Card with Absolute Action Button -->
+            <article class="task-card">
+                <span class="priority-badge high">HIGH</span>
+                <button class="card-action-btn" aria-label="Task options">&vellip;</button>
+                <span class="task-tag">Backend</span>
+                <h3>Setup Database Schema</h3>
+                <p>Design PostgreSQL tables for Users, Boards, and Tasks.</p>
+            </article>
 
-        <article class="task-card">
-        <h3>configure fastAPI routing</h3>
-        <P>set up base REST endpoints for the task model</P>
-        </article>
+            <article class="task-card">
+                <button class="card-action-btn" aria-label="Task options">&vellip;</button>
+                <span class="task-tag">Architecture</span>
+                <h3>Configure FastAPI Routing</h3>
+                <p>Set up base REST endpoints for task CRUD operations.</p>
+            </article>
+        </section>
 
-    </section>
+    </main>
 
-    <section class="kanban-colummn">
-        <header class="colummn-header">
-            <h2>In progress</h2>
-
-        </header>
-
-        <article class="task-card">
-            <span class="task-tag">frontend</span>
-        <h3>Build navigation bar</h3>
-        <P>create responsive navigation for the users and their respective tasks</P>
-        </article>
-
-        <article class="task-card">
-        <h3>configure fastAPI routing</h3>
-        <P>set up base REST endpoints for the task model</P>
-        </article>
-
-    </section>
-
-    <section class="kanban-colummn">
-        <header class="colummn-header">
-            <h2>Review</h2>
-
-        </header>
-
-        <article class="task-card">
-            <span class="task-tag">backend</span>
-        <h3>Test login page</h3>
-        <P>verify login validation and error messages </P>
-        </article>
-
-        <article class="task-card">
-        <h3>configure and check API responses</h3>
-        <P>verify that API requests return the correct data</P>
-        </article>
-
-    </section>
-
-    <section class="kanban-colummn">
-        <header class="colummn-header">
-            <h2>Done</h2>
-
-        </header>
-
-        <article class="task-card">
-            <span class="task-tag">frontend</span>
-        <h3>Create project struture</h3>
-        <P>set up the initial folders and application files</P>
-        </article>
-
-        <article class="task-card">
-        <h3>configure fastAPI routing</h3>
-        <P>set up base REST endpoints for the task model</P>
-        </article>
-
-    </section>
-</main>
+    <!-- Fixed Visual Overlay Modal Backdrop -->
+    <div class="modal-backdrop" id="task-modal">
+        <div class="modal-dialog" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+            <h2 id="modal-title">Create New Task</h2>
+            <form class="modal-form">
+                <label for="task-title">Task Title</label>
+                <input type="text" id="task-title" name="title" placeholder="e.g., Implement JWT Auth" required>
+                
+                <label for="task-desc">Description</label>
+                <textarea id="task-desc" name="description" rows="4" placeholder="Task details..."></textarea>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 </body>
 </html>
