@@ -1,67 +1,452 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agile Task Board - Layout Positioning</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Agile task board - layout poitioning</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+            <aside id="task-sidebar" class="task-details-sidebar">
+               <h2>Task Details</h2>
+ 
+                <p>View and manage task information here.</p>
+                <p>Frontend
+                 ⋮
+                Implement Auth Interceptor
+                Design PostgreSQL tables for Users, Boards, and Tasks. 
+                Design PostgreSQL tables for Users, Boards, and Tasks.
+                Design PostgreSQL tables for Users, Boards, and Tasks.
+                Assignee: Victory Basoene</p>
+                 <p>Frontend
+                  ⋮
+                  Implement Auth Interceptor
+                  Design PostgreSQL tables for Users, Boards, and Tasks.
+                  Design PostgreSQL tables for Users, Boards, and Tasks.
+                  Design PostgreSQL tables for Users, Boards, and Tasks.
+                   Assignee: zoe Basoene</p>
+                <button class="close-sidebar">×</button>
+        </aside>
+        <header class="app-header">
+            <div class="header-brand">
+                <h1>Agile Task Board</h1>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
 
-    <!-- Sticky Application Header -->
-    <header class="app-header">
-        <div class="header-brand">
-            <h1>Agile Task Board</h1>
-        </div>
-        <button class="btn-primary" id="open-modal-btn">+ New Task</button>
-    </header>
 
-    <!-- Main Board Container -->
-    <main class="kanban-board">
-        
-        <!-- To Do Column -->
-        <section class="kanban-column">
-            <header class="column-header">
-                <h2>To Do</h2>
-            </header>
+            <button
+                class="btn-primary"
+                id="open-modal-btn"
+                onclick="
+                    document.getElementById('task-modal').style.display = 'flex'
+                "
+            >
+                + New Task
+            </button>
+        </header>
 
-            <!-- Task Card with Absolute Action Button -->
-            <article class="task-card">
-                <span class="priority-badge high">HIGH</span>
-                <button class="card-action-btn" aria-label="Task options">&vellip;</button>
-                <span class="task-tag">Backend</span>
-                <h3>Setup Database Schema</h3>
-                <p>Design PostgreSQL tables for Users, Boards, and Tasks.</p>
-            </article>
+        <!-- Main Board Container -->
+        <main class="kanban-board">
+            <!-- To Do Column -->
+            <section class="kanban-column">
+                <header class="column-header">
+                    <h2>To Do</h2>
+                </header>
 
-            <article class="task-card">
-                <button class="card-action-btn" aria-label="Task options">&vellip;</button>
-                <span class="task-tag">Architecture</span>
-                <h3>Configure FastAPI Routing</h3>
-                <p>Set up base REST endpoints for task CRUD operations.</p>
-            </article>
-        </section>
+                <!-- Task Card with Absolute Action Button -->
+                <article
+                    class="task-card"
+                    onclick="
+                        document
+                            .getElementById('task-sidebar')
+                            .classList.toggle('open')
+                    "
+                >
+                    <div class="priority-indicator high">High</div>
 
-    </main>
+<header class="task-card-header">
+    <span class="category-tag">Frontend</span>
 
-    <!-- Fixed Visual Overlay Modal Backdrop -->
-    <div class="modal-backdrop" id="task-modal">
-        <div class="modal-dialog" role="dialog" aria-labelledby="modal-title" aria-modal="true">
-            <button class="modal-close-btn" aria-label="Close modal">&times;</button>
-            <h2 id="modal-title">Create New Task</h2>
-            <form class="modal-form">
-                <label for="task-title">Task Title</label>
-                <input type="text" id="task-title" name="title" placeholder="e.g., Implement JWT Auth" required>
-                
-                <label for="task-desc">Description</label>
-                <textarea id="task-desc" name="description" rows="4" placeholder="Task details..."></textarea>
-                
-                <div class="form-actions">
-                    <button type="submit" class="btn-primary">Save Task</button>
-                </div>
-            </form>
+    <div class="task-actions">
+        <button
+            class="card-action-btn"
+            type="button"
+            aria-label="Task options"
+        >
+            ⋮
+        </button>
+
+        <div class="task-context-menu">
+            <button type="button">Edit Task</button>
+            <button type="button">Move Column</button>
+            <button type="button">Delete Task</button>
         </div>
     </div>
+</header>
 
-</body>
+                    <h3 class="task-title">Implement Auth Interceptor</h3>
+                    <ul>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                    </ul>
+
+                    <footer class="task-card-footer">
+                        <span class="task-assignee"
+                            ><strong>Assignee: </strong>Victory Basoene</span
+                        >
+                    </footer>
+                </article>
+
+                <article class="task-card">
+                    <div class="priority-indicator medium">Medium</div>
+                    <header class="task-card-header">
+                        <span class="category-tag">Backend</span>
+                        <button class="btn-icon" aria-label="Task options">
+                            ⋮
+                        </button>
+                    </header>
+                    <h3 class="task-title">Implement DB Stabilisation</h3>
+                    <ul>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                    </ul>
+
+                    <footer class="task-card-footer">
+                        <span class="task-assignee"
+                            ><strong>Assignee: </strong>Zeus Basoene</span
+                        >
+                    </footer>
+                </article>
+            </section>
+            <section class="kanban-column">
+                <header class="column-header">
+                    <h2>To Do</h2>
+                </header>
+
+                <!-- Task Card with Absolute Action Button -->
+                <article
+                    class="task-card"
+                    onclick="
+                        document
+                            .getElementById('task-sidebar')
+                            .classList.toggle('open')
+                    "
+                >
+                    <div class="priority-indicator high">High</div>
+                    <header class="task-card-header">
+                        <span class="category-tag">Frontend</span>
+                        <button class="btn-icon" aria-label="Task options">
+                            ⋮
+                        </button>
+                    </header>
+                    <h3 class="task-title">Implement Auth Interceptor</h3>
+                    <ul>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                    </ul>
+
+                    <footer class="task-card-footer">
+                        <span class="task-assignee"
+                            ><strong>Assignee: </strong>Victory Basoene</span
+                        >
+                    </footer>
+                </article>
+
+                <article class="task-card">
+                    <div class="priority-indicator medium">Medium</div>
+                    <header class="task-card-header">
+                        <span class="category-tag">Backend</span>
+                        <button class="btn-icon" aria-label="Task options">
+                            ⋮
+                        </button>
+                    </header>
+                    <h3 class="task-title">Implement DB Stabilisation</h3>
+                    <ul>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                    </ul>
+
+                    <footer class="task-card-footer">
+                        <span class="task-assignee"
+                            ><strong>Assignee: </strong>Zeus Basoene</span
+                        >
+                    </footer>
+                </article>
+            </section>
+            <section class="kanban-column">
+                <header class="column-header">
+                    <h2>To Do</h2>
+                </header>
+
+                <!-- Task Card with Absolute Action Button -->
+                <article
+                    class="task-card"
+                    onclick="
+                        document
+                            .getElementById('task-sidebar')
+                            .classList.toggle('open')
+                    "
+                >
+                    <div class="priority-indicator high">High</div>
+                    <header class="task-card-header">
+                        <span class="category-tag">Frontend</span>
+                        <button class="btn-icon" aria-label="Task options">
+                            ⋮
+                        </button>
+                    </header>
+                    <h3 class="task-title">Implement Auth Interceptor</h3>
+                    <ul>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                    </ul>
+
+                    <footer class="task-card-footer">
+                        <span class="task-assignee"
+                            ><strong>Assignee: </strong>Victory Basoene</span
+                        >
+                    </footer>
+                </article>
+
+                <article class="task-card">
+                    <div class="priority-indicator medium">Medium</div>
+                    <header class="task-card-header">
+                        <span class="category-tag">Backend</span>
+                        <button class="btn-icon" aria-label="Task options">
+                            ⋮
+                        </button>
+                    </header>
+                    <h3 class="task-title">Implement DB Stabilisation</h3>
+                    <ul>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                    </ul>
+
+                    <footer class="task-card-footer">
+                        <span class="task-assignee"
+                            ><strong>Assignee: </strong>Zeus Basoene</span
+                        >
+                    </footer>
+                </article>
+            </section>
+            <section class="kanban-column">
+                <header class="column-header">
+                    <h2>To Do</h2>
+                </header>
+
+                <!-- Task Card with Absolute Action Button -->
+                <article
+                    class="task-card"
+                    onclick="
+                        document
+                            .getElementById('task-sidebar')
+                            .classList.toggle('open')
+                    "
+                >
+                    <div class="priority-indicator high">High</div>
+                    <header class="task-card-header">
+                        <span class="category-tag">Frontend</span>
+                        <button class="btn-icon" aria-label="Task options">
+                            ⋮
+                        </button>
+                    </header>
+                    <h3 class="task-title">Implement Auth Interceptor</h3>
+                    <ul>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                    </ul>
+
+                    <footer class="task-card-footer">
+                        <span class="task-assignee"
+                            ><strong>Assignee: </strong>Victory Basoene</span
+                        >
+                    </footer>
+                </article>
+
+                <article class="task-card">
+                    <div class="priority-indicator medium">Medium</div>
+                    <header class="task-card-header">
+                        <span class="category-tag">Backend</span>
+                        <button class="btn-icon" aria-label="Task options">
+                            ⋮
+                        </button>
+                    </header>
+                    <h3 class="task-title">Implement DB Stabilisation</h3>
+                    <ul>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                        <li class="task-list">
+                            Design PostgreSQL tables for Users, Boards, and
+                            Tasks.
+                        </li>
+                    </ul>
+
+                    <footer class="task-card-footer">
+                        <span class="task-assignee"
+                            ><strong>Assignee: </strong>Zeus Basoene</span
+                        >
+                    </footer>
+                </article>
+            </section>
+        </main>
+
+        <!-- <aside id="task-sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h2>Task Details</h2>
+                <button id="close-sidebar">&times;</button>
+            </div>
+            <div class="sidebar-body">
+                <p>Details about the selected task go here.</p>
+            </div>
+        </aside> -->
+
+      
+<!-- Activity Drawer Toggle -->
+<input type="checkbox" id="activity-toggle" class="activity-toggle">
+
+<label for="activity-toggle" class="activity-open-btn">
+    ☰ Activity Log
+</label>
+
+<!-- Activity Drawer -->
+<aside class="activity-drawer">
+    <header class="drawer-header">
+        <h2>Activity Log</h2>
+        <label for="activity-toggle" class="btn-close">×</label>
+    </header>
+
+    <div class="drawer-content">
+        <p>Welcome to your Activity Log.</p>
+        <p>Task created: Implement Auth Interceptor.</p>
+        <p>Task updated: Implement DB Stabilisation.</p>
+    </div>
+</aside>
+
+        <!-- Fixed Visual Overlay Modal Backdrop -->
+        <div class="modal-backdrop" id="task-modal">
+            <div
+                class="modal-dialog"
+                role="dialog"
+                aria-labelledby="modal-title"
+                aria-modal="true"
+            >
+                <button
+                    class="modal-close-btn"
+                    aria-label="Close modal"
+                    onclick="
+                        document.getElementById('task-modal').style.display =
+                            'none '
+                    "
+                >
+                    &times;
+                </button>
+                <h2 id="modal-title">Create New Task</h2>
+                <form class="modal-form">
+                    <label for="task-title">Task Title</label>
+                    <input
+                        type="text"
+                        id="task-title"
+                        name="title"
+                        placeholder="e.g., Implement JWT Auth"
+                        required
+                    />
+
+                    <label for="task-desc">Description</label>
+                    <textarea
+                        id="task-desc"
+                        name="description"
+                        rows="4"
+                        placeholder="Task details..."
+                    ></textarea>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            Save Task
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
 </html>

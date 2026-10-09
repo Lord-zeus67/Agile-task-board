@@ -1,126 +1,346 @@
+/* Universal Reset & Box Model FIx */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
- body {
+body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color:#6b8e23;
-    padding:0 1rem;
+    background-color: rgb(55, 73, 75);
+    padding: 0 1rem;
     min-height: 150vh;
- }
+}
 
 .app-header {
-   position: sticky;
-   top: 0;
-   z-index:100;
-   background-color:#00008b;
-    color:#ffffff;
-    padding:1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #0052cc;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    box-shadow:0 4px 4px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
     border-radius: 8px;
-   }
-
-.btn-primary {
- background-color: #ffab00;
- color:#172b4d;
- border:none;
- padding:0.6rem 1.2rem;
- font-weight: bold;
- border-radius:4px;
- cursor: pointer;
-}
-
-.kanban-board {
-   padding:2rem;
-}
-
-.kanban-column {
-    background-color: #f4f5f7;
-    width: 350px;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #dfe1e6;
 }
 
 .task-card {
-    position: relative; 
-    background-color: #ffffff;
+    position: relative;
+}
+
+.task-context-menu {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    z-index: 1000;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    width: 150px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-context-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.task-details-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    max-width: 85vw;
+    height: 100vh;
+    padding: 60px 25px 25px;
+    background: lightblue;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 900;
+
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.task-details-sidebar.open {
+    transform: translateX(0);
+}
+
+.navbar {
+    padding: 0.8rem;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    outline: none;
+    color: goldenrod;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.navbar ul li a:hover {
+    border-bottom: 3px solid darkred;
+}
+
+.btn-primary {
+    background-color: #ffab00;
+    color: #172b4d;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.kanban-board {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 2rem;
+    overflow-x: auto;
+    height: calc(100vh - 75px);
+}
+
+.task-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+.kanban-column {
+    display: flex;
+    background-color: #f4f5f7;
+    color: black;
+    width: 350px;
+    border-radius: 8px;
+    max-height: 100%;
+    flex-direction: column;
     padding: 1rem;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.6);
+}
+
+.task-card {
+    position: relative;
+    background-color: #ffffff;
+    color: darkred;
     border-radius: 6px;
-    margin-bottom: 1rem;
     border: 1px solid #dfe1e6;
-    box-shadow: 0 4px 7px rgba(9, 30, 66, 0.1);
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 5px rgba(9, 30, 66, 0.9);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
-.priority-badge {
-   position: absolute;
-   top:1.3rem;
-   left: 6rem;
-   background-color: #ff56306b;
-   color:#ffffff;
-   font-size: 0.65rem;
-   font-weight: bold;
-   padding: 0.1rem 0.4rem;
-   border-radius: 3px;
-   z-index: index 2;
+.task-card-header {
+    display: flex;
+    justify-content: space-between;
+    /* Tag left, Button right */
+    align-items: flex-start;
+    /* Align top */
 }
 
-.card-action-btn {
+.task-card-header .btn-icon {
+    flex-shrink: 0;
+}
+
+.task-card-header .btn-icon {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
     background: transparent;
     border: none;
+    color: #172b4d;
     font-size: 1.2rem;
-    color:darkred;
     cursor: pointer;
     padding: 0.2rem 0.5rem;
     border-radius: 3px;
 }
 
-.card-action-btn:hover {
+.task-card-header .btn-icon:hover {
     background-color: #ebecf0;
-    color: #172b4d;
+    color: darkred;
+
 }
 
-.task-tag {
-    display: inline-block;
-    background-color: #deebff;
-    color: #0747a6;
-    font-size: 0.75rem;
-    font-weight: bold;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
+.dropdown-menu {
+    position: absolute;
+    top: 2rem;
+    right: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(9, 30, 66, 0.9);
+    display: none;
+    z-index: 10;
+}
+
+.card-action-btn:focus+.dropdown-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-item {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    padding: 0.4rem 0.8rem;
+    text-align: left;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.dropdown-item:hover {
+    background-color: #4072bd;
+    color: #ffffff;
+    border-bottom: 3px solid darkred;
+    transform: scale(1.05);
+}
+
+.column-header h2 {
+    font-size: 1.2rem;
+    color: black;
+    margin-bottom: 1rem;
+}
+
+.task-card h3 {
+    font-size: 1rem;
     margin-bottom: 0.5rem;
 }
-/* 
+
+.task-card p {
+    font-size: 0.9rem;
+}
+
+.priority-indicator {
+    position: absolute;
+    top: 1.1rem;
+    left: 5.5rem;
+    background-color: #86828258;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    z-index: 2;
+}
+
+.priority-indicator.high {
+    background-color: #9c22226f;
+    color: darkred;
+}
+
+.priority-indicator.medium {
+    background-color: #82822449;
+    color: goldenrod;
+}
+
+.category-tag {
+    display: inline-block;
+    background-color: rgb(222, 235, 255);
+    color: rgb(7, 71, 166);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.activity-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 900;
+}
+
+.drawer-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 1rem;
+}
+
+.drawer-header .btn-close {
+    flex-shrink: 0;  
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    background-color: rgba(128, 128, 128, 0.403);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.drawer-header .btn-close:hover {
+    background-color: rgba(128, 128, 128, 0.403);
+    color: #ffab00;
+}
+
 .modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(9, 30, 66, 0.54);
+    background-color: rgba(4, 28, 44, 0.54);
     backdrop-filter: blur(4px);
     z-index: 1000;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
-} */
+}
 
 .modal-dialog {
-    position: relative; /* Containing block for the close button */
+    position: relative;
+    /* Containing block for the close button */
     background-color: #ffffff;
     width: 100%;
     max-width: 500px;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 8px 16px rgba(9, 30, 66, 0.25);
+    box-shadow: 0 8px 16px rgba(9, 30, 66, 0.8);
 }
 
 .modal-close-btn {
@@ -143,63 +363,170 @@
 
 .modal-form input,
 .modal-form textarea {
-   padding: 0.6rem;
-   border: 1px solid #dfe1e6;
-   border-radius: 8px;
-   font-family: inherit;
+    padding: 0.6rem;
+    border: 1px solid #dfe1e6;
+    border-radius: 8px;
+    font-family: inherit;
 }
 
- .kanban-colummn {
-    background-color:#00008b;
-    color: aqua;
-    width: 350px;
-    border-radius:8px;
-    padding:1rem;
-    border: 1px solid greenyellow;
-    box-shadow:0 4px 6px rgba(red, green, blue, alpha);
-    display: inline-block;
-    vertical-align: top;
-    margin-right:2%;
-    margin-bottom:2%;
- }
+/* .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    height: 100vh;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 900;
+} */
+
+/* .sidebar.open {
+    transform: translateX(0);
+} */
+ 
+/* ACTIVITY DRAWER FIX */
+
+.activity-toggle {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.activity-open-btn {
+position: fixed;
+top: 100px;
+left: 15px;
+z-index: 1400;
+display: inline-block;
+padding: 12px 16px;
+background: #0052cc;
+color: white;
+border-radius: 6px;
+cursor: pointer;
+font-weight: bold;
+transition: left 0.3s ease;
+}
+
+/* Move the button to the right when the drawer opens */
+.activity-toggle:checked ~ .activity-open-btn {
+left: 315px;
+}
 
 
- .colummn-header h2 {
-    font: size 1.2rem;
-    color: chartreuse;
-     padding:1rem;
-    margin: bottom 1rem;
+.activity-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    max-width: 85vw;
+    height: 100vh;
+    padding: 20px;
+    background: #202b38;
+    color: white;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.4);
+    z-index: 1500;
+    overflow-y: auto;
 
- }
+    transform: translateX(-110%);
+    visibility: hidden;
+    transition: transform 0.3s ease, visibility 0.3s ease;
+}
 
- .task-card {
-    background-color: brown;
-    border-radius:4px;
-    border: 1px solid gold;
-    padding:1rem;
-    margin-bottom: 0.8rem;
-    box-shadow: 0 5px 2px silver ;
+.activity-toggle:checked ~ .activity-drawer {
+    transform: translateX(0);
+    visibility: visible;
+}
 
- }
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #64748b;
+}
 
- .task-card h3 {
-    font-size: 1rem;
-    color: aqua;
-    margin-bottom:0.5rem;
- }
+.drawer-header .btn-close {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background: #475569;
+    color: white;
+    border-radius: 6px;
+    font-size: 26px;
+    cursor: pointer;
+}
 
- .task-card p {
-    font-size: 0.9rem;
-    color: whitesmoke;
- }
+.drawer-content p {
+    margin-bottom: 15px;
+}
 
 
-.task-tag {
-    background-color:#0052cc;
-    color:#ffffff;
-    border-radius:2px;
-    padding:0.2rem 0.5rem;
-    margin-bottom:1rem;
-    display: inline-block
-    
-    }
+/* TASK CONTEXT MENU */
+
+.task-actions {
+    position: relative;
+    margin-left: auto;
+}
+
+.card-action-btn {
+    background: transparent;
+    border: none;
+    color: #172b4d;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+}
+
+.card-action-btn:hover,
+.card-action-btn:focus {
+    background-color: #ebecf0;
+    outline: 2px solid #0052cc;
+}
+
+/* Hidden until the action button receives focus */
+.task-context-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    width: 160px;
+    padding: 8px;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+}
+
+/* Show the menu when its action button receives focus */
+.task-actions:focus-within .task-context-menu {
+    display: block;
+}
+
+.task-context-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: #1f2937;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.task-context-menu button:hover,
+.task-context-menu button:focus {
+    background-color: #e5e7eb;
+    outline: none;
+}
