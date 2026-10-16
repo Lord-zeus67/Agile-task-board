@@ -1,0 +1,220 @@
+/* Tablet Breakpoint */
+@media (min-width: 768px) {
+    .app-header {
+        flex-direction: row;
+        padding: 0.75rem 1.5rem;
+        text-align: left;
+        gap: 5rem;
+        align-items: center;
+    }
+
+    .navbar {
+        display: block;
+    }
+
+    .navbar ul {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+
+    .hamburger-menu {
+        display: none;
+    }
+
+    .text-short {      
+    display: none;
+}
+
+.text-long {
+    display: block;
+}
+
+.app-header .header-actions {
+    top: 1.5rem;
+    right: 3.2rem;
+}
+
+    .dashboard-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Transition Kanban columns into a 2x2 Grid on tablets */
+    .kanban-board {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .kanban-column {
+        width: 100% !important;
+    }
+
+    .modal-backdrop #modal-title {
+        font-size: 1.4rem;
+    }
+
+    .modal-form label {
+        font-size: 0.85rem;
+    }
+
+    .modal-form input,
+    .modal-form select,
+    .modal-form textarea {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .activity-drawer {
+        width: 400px;
+    }
+
+    .drawer-header .drawer-title {
+        font-size: 2rem;
+    }
+
+    .drawer-content {
+        max-height: 500px;
+    }
+
+    .drawer-content .timeline-item {
+        grid-template-columns: 70px 1fr;
+    }
+
+    .drawer-content .user-avatar {
+        width: 55px;
+        height: 55px;
+    }
+
+    .drawer-content .timeline-item .item-details {
+        padding: 0.5rem;
+    }
+
+    .drawer-content .timeline-item .item-details .activity-text {
+        font-size: 1.1rem;
+    }
+
+    .drawer-content .timeline-item .item-details .activity-comment {
+        font-size: 1rem;
+        padding: 0.4rem;
+        border-radius: 8px;
+    }
+
+    .drawer-content .timeline-item .item-details .activity-time {
+        font-size: 0.8rem;
+    }
+}
+
+
+/* 3. Desktop / Laptop Breakpoint (min-width: 1024px) */
+@media (min-width: 1024px) {
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #1a1717;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #135342;
+        border-radius: 5px;
+    }
+
+    .app-header {
+        gap: 14rem;
+    }
+
+    .kanban-board {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 2rem;
+    }
+
+    .dashboard-summary {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .analytics-widget-panel {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            "velocity burndown members";
+        width: 100%;
+    }
+
+    .kanban-column {
+        max-height: 100%;
+    }
+
+    .modal-dialog {
+        width: 500px !important;
+    }
+
+    .board-columns-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .board-gallery-grid {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100% !important;
+    }
+
+    .modal-dialog {
+        width: 90% !important;
+        padding: 1rem;
+        margin: auto;
+        overflow-y: auto;
+    }
+
+    .modal-backdrop #modal-title {
+        font-size: 2rem;
+    }
+
+    .modal-form label {
+        font-size: 1rem;
+    }
+
+    .modal-form input,
+    .modal-form select,
+    .modal-form textarea {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .form-actions .modal-action-btn {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .drawer-content .timeline-item {
+        grid-template-columns: 60px 1fr;
+    }
+
+    .drawer-content .user-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .drawer-content .timeline-item .item-details {
+        padding: 0.7rem;
+    }
+
+    .drawer-content .timeline-item .item-details .activity-text {
+        font-size: 1rem;
+    }
+
+    .drawer-content .timeline-item .item-details .activity-comment {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+
+    .drawer-content .timeline-item .item-details .activity-time {
+        font-size: 0.8rem;
+    }
+}

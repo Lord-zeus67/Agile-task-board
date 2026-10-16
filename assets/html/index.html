@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Agile task board - layout poitioning</title>
+        <link rel="stylesheet" href="../css/styles.css" />
+        <link rel="stylesheet" href="../css/responsiveness.css" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+
+        <script>
+            function themeInitialiser() {
+                const savedTheme = localStorage.getItem("theme");
+                if (savedTheme === "dark") {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+                return "Theme Applied";
+            }
+            themeInitialiser();
+        </script>
+    </head>
+    <body>
+        <header class="app-header" id="app-header">
+            <div class="header-brand">
+                <h1>Agile Task Board</h1>
+            </div>
+            <nav class="navbar" id="navbar">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+            <div
+                class="hamburger-menu"
+                onclick="
+                    var navbarToggle = document.getElementById('navbar');
+                    navbarToggle.classList.add('show');
+                "
+            >
+                <i class="bx bx-menu"></i>
+            </div>
+            <div class="header-actions">
+                <button
+                    class="btn-theme-toggle btn-small"
+                    id="theme-toggle-btn"
+                    aria-label="Toggle dark mode"
+                >
+                <span class="text-short"> 🌓</span>
+                <span class="text-long"> 🌓Theme</span>
+                 
+                </button>
+                <button
+                    class="btn-small new-task-btn"
+                    id="open-modal-btn"
+                    onclick="
+                        document.getElementById('task-modal').style.display =
+                            'flex'
+                    "
+                >
+                   <span class="text-short"> <i class="bx bx-plus"></i> </span>
+
+                     <span class="text-long"> <i class="bx bx-plus"></i> New Task </span>
+            
+                    
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Board Container -->
+        <main class="kanban-board">
+            <section class="dashboard-summary">
+                <div class="metric-card">
+                    <span class="metric-title">Total Tasks</span>
+                    <span class="metric-value">12</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-title">In Progress</span>
+                    <span class="metric-value highlight-progress">4</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-title">High Priority</span>
+                    <span class="metric-value highlight-alert">3</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-title">Completed</span>
+                    <span class="metric-value highlight-done">5</span>
+                </div>
+            </section>
+
+            <div class="analytics-widget-panel">
+                <div class="widget-card area-velocity">
+                    <h4>Sprint Velocity</h4>
+                    <p>34 Story Points Completed (Sprint 14)</p>
+                </div>
+                <div class="widget-card area-burndown">
+                    <h4>Burndown Status</h4>
+                    <p>On track to complete active sprint by Friday.</p>
+                </div>
+
+                <div class="widget-card area-members">
+                    <h4>Active Team</h4>
+                    <p>5 Members Online</p>
+                </div>
+            </div>
+
+            <div class="board-columns-container">
+                <section class="kanban-column">
+                    <header class="column-header">
+                        <h2>To Do</h2>
+                    </header>
+
+                    <article
+                        class="task-card"
+                        onclick="
+                            var drawer =
+                                document.getElementById('activity-drawer');
+                            drawer.classList.add('is-open');
+                            drawer.setAttribute('aria-hidden', 'false');
+                        "
+                    >
+                        <div class="priority-indicator high">High</div>
+                        <header class="task-card-header">
+                            <span class="category-tag">Frontend</span>
+                            <button class="btn-icon" aria-label="Task options">
+                                ⋮
+                            </button>
+                        </header>
+                        <h3 class="task-title">Implement Auth Interceptor</h3>
+                        <ul>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                        </ul>
+
+                        <footer class="task-card-footer">
+                            <span class="task-assignee"
+                                ><strong>Assignee: </strong>Victory
+                                Basoene</span
+                            >
+                        </footer>
+                    </article>
+
+                    <article
+                        class="task-card"
+                        id="task-card-trigger"
+                        onclick="
+                            var drawer =
+                                document.getElementById('activity-drawer');
+                            drawer.classList.add('is-open');
+                            drawer.setAttribute('aria-hidden', 'false');
+                        "
+                    >
+                        <div class="priority-indicator medium">Medium</div>
+                        <header class="task-card-header">
+                            <span class="category-tag">Backend</span>
+                            <button class="btn-icon" aria-label="Task options">
+                                ⋮
+                            </button>
+                        </header>
+                        <h3 class="task-title">Implement DB Stabilisation</h3>
+                        <ul>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                        </ul>
+
+                        <footer class="task-card-footer">
+                            <span class="task-assignee"
+                                ><strong>Assignee: </strong>Zeus Basoene</span
+                            >
+                        </footer>
+                    </article>
+                </section>
+
+                <section class="kanban-column">
+                    <header class="column-header">
+                        <h2>In Progress</h2>
+                    </header>
+
+                    <article
+                        class="task-card"
+                        id="task-card-trigger"
+                        onclick="
+                            var drawer =
+                                document.getElementById('activity-drawer');
+                            drawer.classList.add('is-open');
+                            drawer.setAttribute('aria-hidden', 'false');
+                        "
+                    >
+                        <div class="priority-indicator high">High</div>
+                        <header class="task-card-header">
+                            <span class="category-tag">Frontend</span>
+                            <button class="btn-icon" aria-label="Task options">
+                                ⋮
+                            </button>
+                        </header>
+                        <h3 class="task-title">Implement Auth Interceptor</h3>
+                        <ul>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                        </ul>
+
+                        <footer class="task-card-footer">
+                            <span class="task-assignee"
+                                ><strong>Assignee: </strong>Victory
+                                Basoene</span
+                            >
+                        </footer>
+                    </article>
+
+                    <article
+                        class="task-card"
+                        id="task-card-trigger"
+                        onclick="
+                            var drawer =
+                                document.getElementById('activity-drawer');
+                            drawer.classList.add('is-open');
+                            drawer.setAttribute('aria-hidden', 'false');
+                        "
+                    >
+                        <div class="priority-indicator medium">Medium</div>
+                        <header class="task-card-header">
+                            <span class="category-tag">Backend</span>
+                            <button class="btn-icon" aria-label="Task options">
+                                ⋮
+                            </button>
+                        </header>
+                        <h3 class="task-title">Implement DB Stabilisation</h3>
+                        <ul>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                        </ul>
+
+                        <footer class="task-card-footer">
+                            <span class="task-assignee"
+                                ><strong>Assignee: </strong>Zeus Basoene</span
+                            >
+                        </footer>
+                    </article>
+                </section>
+
+                <section class="kanban-column">
+                    <header class="column-header">
+                        <h2>To Do</h2>
+                    </header>
+
+                    <article
+                        class="task-card"
+                        id="task-card-trigger"
+                        onclick="
+                            var drawer =
+                                document.getElementById('activity-drawer');
+                            drawer.classList.add('is-open');
+                            drawer.setAttribute('aria-hidden', 'false');
+                        "
+                    >
+                        <div class="priority-indicator high">High</div>
+                        <header class="task-card-header">
+                            <span class="category-tag">Frontend</span>
+                            <button class="btn-icon" aria-label="Task options">
+                                ⋮
+                            </button>
+                        </header>
+                        <h3 class="task-title">Implement Auth Interceptor</h3>
+                        <ul>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                        </ul>
+
+                        <footer class="task-card-footer">
+                            <span class="task-assignee"
+                                ><strong>Assignee: </strong>Victory
+                                Basoene</span
+                            >
+                        </footer>
+                    </article>
+
+                    <article
+                        class="task-card"
+                        id="task-card-trigger"
+                        onclick="
+                            var drawer =
+                                document.getElementById('activity-drawer');
+                            drawer.classList.add('is-open');
+                            drawer.setAttribute('aria-hidden', 'false');
+                        "
+                    >
+                        <div class="priority-indicator medium">Medium</div>
+                        <header class="task-card-header">
+                            <span class="category-tag">Backend</span>
+                            <button class="btn-icon" aria-label="Task options">
+                                ⋮
+                            </button>
+                        </header>
+                        <h3 class="task-title">Implement DB Stabilisation</h3>
+                        <ul>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                        </ul>
+
+                        <footer class="task-card-footer">
+                            <span class="task-assignee"
+                                ><strong>Assignee: </strong>Zeus Basoene</span
+                            >
+                        </footer>
+                    </article>
+                </section>
+
+                <section class="kanban-column">
+                    <header class="column-header">
+                        <h2>In Progress</h2>
+                    </header>
+
+                    <article
+                        class="task-card"
+                        id="task-card-trigger"
+                        onclick="
+                            var drawer =
+                                document.getElementById('activity-drawer');
+                            drawer.classList.add('is-open');
+                            drawer.setAttribute('aria-hidden', 'false');
+                        "
+                    >
+                        <div class="priority-indicator high">High</div>
+                        <header class="task-card-header">
+                            <span class="category-tag">Frontend</span>
+                            <button class="btn-icon" aria-label="Task options">
+                                ⋮
+                            </button>
+                        </header>
+                        <h3 class="task-title">Implement Auth Interceptor</h3>
+                        <ul>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                        </ul>
+
+                        <footer class="task-card-footer">
+                            <span class="task-assignee"
+                                ><strong>Assignee: </strong>Victory
+                                Basoene</span
+                            >
+                        </footer>
+                    </article>
+
+                    <article
+                        class="task-card"
+                        id="task-card-trigger"
+                        onclick="
+                            var drawer =
+                                document.getElementById('activity-drawer');
+                            drawer.classList.add('is-open');
+                            drawer.setAttribute('aria-hidden', 'false');
+                        "
+                    >
+                        <div class="priority-indicator medium">Medium</div>
+                        <header class="task-card-header">
+                            <span class="category-tag">Backend</span>
+                            <button class="btn-icon" aria-label="Task options">
+                                ⋮
+                            </button>
+                        </header>
+                        <h3 class="task-title">Implement DB Stabilisation</h3>
+                        <ul>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                            <li class="task-list">
+                                Design PostgreSQL tables for Users, Boards, and
+                                Tasks.
+                            </li>
+                        </ul>
+
+                        <footer class="task-card-footer">
+                            <span class="task-assignee"
+                                ><strong>Assignee: </strong>Zeus Basoene</span
+                            >
+                        </footer>
+                    </article>
+                </section>
+            </div>
+
+            <section class="board-gallery-grid">
+                <div class="project-cards">
+                    <h3>Project Title</h3>
+                    <p>Project Desc</p>
+                </div>
+                <div class="project-cards">
+                    <h3>Project Title</h3>
+                    <p>Project Desc</p>
+                </div>
+                <div class="project-cards">
+                    <h3>Project Title</h3>
+                    <p>Project Desc</p>
+                </div>
+                <div class="project-cards">
+                    <h3>Project Title</h3>
+                    <p>Project Desc</p>
+                </div>
+                <div class="project-cards">
+                    <h3>Project Title</h3>
+                    <p>Project Desc</p>
+                </div>
+                <div class="project-cards">
+                    <h3>Project Title</h3>
+                    <p>Project Desc</p>
+                </div>
+            </section>
+        </main>
+
+        <aside
+            id="activity-drawer"
+            class="activity-drawer"
+            aria-labelledby="drawer-title"
+            aria-hidden="true"
+            role="dialog"
+        >
+            <header class="drawer-header">
+                <h2 id="drawer-title" class="drawer-title">Activity Log</h2>
+                <button
+                    id="drawer-btn-close"
+                    class="btn-close"
+                    aria-label="Close activity log"
+                    type="button"
+                    onclick="
+                        var drawer = document.getElementById('activity-drawer');
+                        drawer.classList.remove('is-open');
+                        drawer.setAttribute('aria-hidden', 'true');
+                    "
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </header>
+
+            <div class="drawer-content">
+                <!-- Activity Timeline Container -->
+                <ol class="activity-timeline" aria-live="polite">
+                    <!-- Example Timeline Item -->
+                    <li class="timeline-item">
+                        <img
+                            src="../img/avatar-f-placeholder.jpg"
+                            alt="Sarah Jenkins"
+                            class="user-avatar"
+                        />
+
+                        <div class="item-details">
+                            <p class="activity-text">
+                                <strong class="user-name">Sarah Jenkins</strong>
+                                moved this task from
+                                <span class="status-badge">In Progress</span> to
+                                <span class="status-badge">Review</span>
+                            </p>
+                            <time
+                                datetime="2026-10-13T08:30:00Z"
+                                class="activity-time"
+                                title="October 13, 2026, 8:30 AM"
+                                >24 mins ago</time
+                            >
+                        </div>
+                    </li>
+
+                    <!-- Another Example Item -->
+                    <li class="timeline-item">
+                        <img
+                            src="../img/avatar-m-placeholder.jpg"
+                            alt="Alex Rivera"
+                            class="user-avatar"
+                        />
+                        <div class="item-details">
+                            <p class="activity-text">
+                                <strong class="user-name">Alex Rivera</strong>
+                                left a comment
+                            </p>
+                            <blockquote class="activity-comment">
+                                "The new designs are ready for look over. Added
+                                the feedback links."
+                            </blockquote>
+                            <time
+                                datetime="2026-10-13T07:15:00Z"
+                                class="activity-time"
+                                title="October 13, 2026, 7:15 AM"
+                                >1 hour ago</time
+                            >
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <img
+                            src="../img/avatar-f-placeholder.jpg"
+                            alt="Sarah Jenkins"
+                            class="user-avatar"
+                        />
+
+                        <div class="item-details">
+                            <p class="activity-text">
+                                <strong class="user-name">Sarah Jenkins</strong>
+                                moved this task from
+                                <span class="status-badge">In Progress</span> to
+                                <span class="status-badge">Review</span>
+                            </p>
+                            <time
+                                datetime="2026-10-13T08:30:00Z"
+                                class="activity-time"
+                                title="October 13, 2026, 8:30 AM"
+                                >24 mins ago</time
+                            >
+                        </div>
+                    </li>
+
+                    <!-- Another Example Item -->
+                    <li class="timeline-item">
+                        <img
+                            src="../img/avatar-m-placeholder.jpg"
+                            alt="Alex Rivera"
+                            class="user-avatar"
+                        />
+                        <div class="item-details">
+                            <p class="activity-text">
+                                <strong class="user-name">Alex Rivera</strong>
+                                left a comment
+                            </p>
+                            <blockquote class="activity-comment">
+                                "The new designs are ready for look over. Added
+                                the feedback links."
+                            </blockquote>
+                            <time
+                                datetime="2026-10-13T07:15:00Z"
+                                class="activity-time"
+                                title="October 13, 2026, 7:15 AM"
+                                >1 hour ago</time
+                            >
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </aside>
+
+        <!-- Fixed Visual Overlay Modal Backdrop -->
+        <div class="modal-backdrop" id="task-modal">
+            <div
+                class="modal-dialog"
+                role="dialog"
+                aria-labelledby="modal-title"
+                aria-modal="true"
+            >
+                <button
+                    class="modal-close-btn"
+                    aria-label="Close modal"
+                    onclick="
+                        document.getElementById('task-modal').style.display =
+                            'none '
+                    "
+                >
+                    &times;
+                </button>
+                <h2 id="modal-title">Create New Task</h2>
+                <form class="modal-form">
+                    <div class="modal-form area-title">
+                        <label for="task-title">Task Title</label>
+                        <input
+                            type="text"
+                            id="task-title"
+                            name="title"
+                            placeholder="e.g., Implement JWT Auth"
+                            required
+                        />
+                    </div>
+
+                    <div class="modal-form area-category">
+                        <label for="task-category">Category</label>
+                        <select id="task-category" name="category">
+                            <option value="frontend">Frontend</option>
+                            <option value="backend">Backend</option>
+                            <option value="database">Database</option>
+                            <option value="devops">DevOps</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-form area-priority">
+                        <label for="task-priority">Priority</label>
+                        <select id="task-priority" name="priority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-form area-desc">
+                        <label for="task-desc">Description</label>
+                        <textarea
+                            id="task-desc"
+                            name="description"
+                            rows="4"
+                            placeholder="Task details..."
+                        ></textarea>
+                    </div>
+
+                    <div class="form-actions area-actions">
+                        <div class="modal-actions-right">
+                            <button
+                                type="button"
+                                class="modal-action-btn"
+                                id="modal-cancel"
+                                onclick="
+                                    document.getElementById(
+                                        'task-modal',
+                                    ).style.display = 'none'
+                                "
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="submit"
+                                class="modal-action-btn"
+                                id="modal-save"
+                            >
+                                Save Task
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            const themeToggleBtn = document.getElementById("theme-toggle-btn");
+            const htmlRoot = document.documentElement;
+
+            themeToggleBtn.addEventListener("click", () => {
+                const currentTheme = htmlRoot.getAttribute("data-theme");
+                if (currentTheme === "dark") {
+                    htmlRoot.removeAttribute("data-theme");
+                    localStorage.setItem("theme", "light");
+                } else {
+                    htmlRoot.setAttribute("data-theme", "dark");
+                    localStorage.setItem("theme", "dark");
+                }
+            });
+
+            
+            function handleToggle() {
+               const navbarToggle =document.getElementById("navbar");
+               navbarToggle.classList.toggle("show")
+            }
+
+        </script>
+    </body>
+</html>
