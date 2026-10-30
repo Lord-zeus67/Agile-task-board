@@ -67,15 +67,11 @@
     }
 
     .activity-drawer {
-        width: 400px;
+        width: 430px;
     }
 
     .drawer-header .drawer-title {
         font-size: 2rem;
-    }
-
-    .drawer-content {
-        max-height: 500px;
     }
 
     .drawer-content .timeline-item {
@@ -88,21 +84,27 @@
     }
 
     .drawer-content .timeline-item .item-details {
-        padding: 0.5rem;
+        padding: 0.6rem;
+    }
+
+    .drawer-content .timeline-item .item-details .user-name {
+        font-size: 1.15rem;
     }
 
     .drawer-content .timeline-item .item-details .activity-text {
-        font-size: 1.1rem;
+        font-size: 1.13rem;
     }
 
     .drawer-content .timeline-item .item-details .activity-comment {
-        font-size: 1rem;
+        font-size: 1.13rem;
         padding: 0.4rem;
         border-radius: 8px;
     }
 
     .drawer-content .timeline-item .item-details .activity-time {
-        font-size: 0.8rem;
+        font-size: 0.95rem;
+        margin-top: 0.3rem;
+
     }
 }
 
@@ -122,7 +124,6 @@
         background: #135342;
         border-radius: 5px;
     }
-
 
     .kanban-board {
         display: flex;
@@ -190,6 +191,10 @@
         font-size: 1rem;
     }
 
+    .activity-drawer {
+        width: 500px;
+    }
+
     .drawer-content .timeline-item {
         grid-template-columns: 60px 1fr;
     }
@@ -200,19 +205,11 @@
     }
 
     .drawer-content .timeline-item .item-details {
-        padding: 0.7rem;
-    }
-
-    .drawer-content .timeline-item .item-details .activity-text {
-        font-size: 1rem;
+        padding: 0.8rem;
     }
 
     .drawer-content .timeline-item .item-details .activity-comment {
-        font-size: 0.9rem;
-        padding: 0.4rem;
+        padding: 0.5rem;
     }
 
-    .drawer-content .timeline-item .item-details .activity-time {
-        font-size: 0.8rem;
-    }
 }
