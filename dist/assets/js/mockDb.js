@@ -61,7 +61,8 @@ const taskBoardDatabase = [
         Database: 1,
         devops: 1,
     }
-];
+
+]
 
 export { taskBoardDatabase };
 
