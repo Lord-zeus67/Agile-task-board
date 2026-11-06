@@ -25,7 +25,7 @@ const taskBoardDatabase = [
         desc: "This is a Mock Description for this task",
         assignee: "Xero Bot",
         status: "in_progress",
-    },
+    }, 
     {
         id: 203,
         title: "Build Flexbox Navbar",

@@ -1,4 +1,4 @@
-import { syncToStorage, taskBoardDatabase } from "../mockDb.js";
+import { syncToStorage, taskBoardDatabase } from "../database/mockDb.js";
 import { validateTaskInput } from "./validation.js";
 
 function createNewTaskObj(title, category, priority, desc, assignee, status) {
@@ -168,7 +168,47 @@ function deleteTaskById(taskId) {
     return false;
 }
 
+
+function generateSprintSummaryReport(tasksArray) {
+
+    const summaryReport = tasksArray.reduce((accumulator, task) => {
+
+        accumulator.totalTasks++;
+
+        accumulator.totalPoints += Number(task.points) || 0;
+
+        if (task.status === "done") {
+            accumulator.completedPoints += Number(task.points) || 0;
+        }
+
+        if (accumulator.statusBreakdown[task.status] === undefined) {
+            accumulator.statusBreakdown[task.status] = 0;
+        }
+
+        accumulator.statusBreakdown[task.status]++;
+
+        return accumulator;
+
+    }, {
+
+        totalTasks: 0,
+        totalPoints: 0,
+        completedPoints: 0,
+        statusBreakdown: {}
+
+    });
+
+    console.table(summaryReport);
+
+    return summaryReport;
+}
+
+
+generateSprintSummaryReport(tasksArray);
+
+
 export {
+    
     searchTasksByKeyword,
     createNewTaskObj,
     formatTaskSumamry,
@@ -177,5 +217,6 @@ export {
     updateTaskStatus,
     exportTasksByCategory,
     getCategoryTaskCounts,
-    deleteTaskById
+    deleteTaskById,
+    generateSprintSummaryReport,
 };

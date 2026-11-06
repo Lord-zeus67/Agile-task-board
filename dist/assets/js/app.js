@@ -5,7 +5,7 @@ import {
     activityCloseBtn,
     openActivityLog,
     handleNavToggle,
-} from "./script.js";
+} from "./dom/script.js";
 
 import {
     filterTasksByPriority,
@@ -15,11 +15,11 @@ import {
     createNewTaskObj,
     exportTasksByCategory,
     updateTaskStatus
-} from "./utils/tasks.js";
+} from "./utils.js/task.js";
 
-import { calculateBoardMetrics } from "./utils/calc.js";
+import { calculateBoardMetrics } from "./utils.js/calc.js";
 
-import { taskBoardDatabase } from "./mockDb.js";
+import { taskBoardDatabase } from "./database/mockDb.js";
 
 // Initialisers
 themeInitialiser();

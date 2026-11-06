@@ -204,6 +204,7 @@ const getCategoryTaskCounts = (tasksArray) => {
     return categoryObj;
 };
 
+
 export {
     createNewTaskObj,
     validateTaskInput,
