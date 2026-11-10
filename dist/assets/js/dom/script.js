@@ -213,19 +213,15 @@ function renderBoardColumns(tasks) {
         const fragment = document.createDocumentFragment();
 
         if (matchingTasks.length === 0) {
-        const emptyMessage = document.createElement("div");
-        emptyMessage.className = "empty-column-message";
-        emptyMessage.textContent = "No tasks in this column";
-        fragment.appendChild(emptyMessage);
-        }
-
-        
-        else {
-        matchingTasks.forEach((task) => {
-        const cardElement = createTaskCardElement(task);
-        fragment.appendChild(cardElement);
-    });
-    }
+            const emptyMessage = document.createElement("div");
+            emptyMessage.className = "empty-column-message";
+            emptyMessage.textContent = "No tasks in this column";
+            fragment.appendChild(emptyMessage);
+        }else {
+            matchingTasks.forEach((task) => {
+            const cardElement = createTaskCardElement(task);
+            fragment.appendChild(cardElement);
+        })};
 
         // Reset container contents safely and append fragment
         columnContainer.replaceChildren(columnTitleCont, fragment);
