@@ -4,15 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Agile task board - layout poitioning</title>
+        <link rel="icon" type="image/jpeg" href="./assets/img/favicon.jpg">
         <link rel="stylesheet" href="./assets/css/styles.css" />
         <link rel="stylesheet" href="./assets/css/responsiveness.css" />
         <link
             href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
             rel="stylesheet"
         />
-        <!-- <script src="./assets/js/script.js" defer></script> -->
         <script type="module" src="./assets/js/app.js" defer></script>
-        <!-- <script src="./assets/js/test.js" defer></script> -->
     </head>
     <body>
         <header class="app-header" id="app-header">
@@ -47,10 +46,6 @@
                 <button
                     class="btn-small new-task-btn"
                     id="open-modal-btn"
-                    onclick="
-                        document.getElementById('task-modal').style.display =
-                            'flex'
-                    "
                 >
                     <span class="text-short"><i class="bx bx-plus"></i></span>
                     <span class="text-long"
@@ -65,19 +60,27 @@
             <section class="dashboard-summary">
                 <div class="metric-card">
                     <span class="metric-title">Total Tasks</span>
-                    <span class="metric-value">12</span>
+                    <span class="metric-value" id="metric-total">0</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-title">Todo</span>
+                    <span class="metric-value highlight-todo" id="metric-in-todo">0</span>
                 </div>
                 <div class="metric-card">
                     <span class="metric-title">In Progress</span>
-                    <span class="metric-value highlight-progress">4</span>
+                    <span class="metric-value highlight-progress" id="metric-in-progress">0</span>
                 </div>
                 <div class="metric-card">
                     <span class="metric-title">High Priority</span>
-                    <span class="metric-value highlight-alert">3</span>
+                    <span class="metric-value highlight-alert" id="metric-high-priority">0</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-title">Review</span>
+                    <span class="metric-value highlight-review" id="metric-review">0</span>
                 </div>
                 <div class="metric-card">
                     <span class="metric-title">Completed</span>
-                    <span class="metric-value highlight-done">5</span>
+                    <span class="metric-value highlight-done" id="metric-done">0</span>
                 </div>
             </section>
 
@@ -98,261 +101,22 @@
             </div>
 
             <div class="board-columns-container">
-                <section class="kanban-column">
-                    <header class="column-header">
-                        <h2>To Do</h2>
-                    </header>
+                <section class="kanban-column" id="todo-task-cards">
 
-                    <article class="task-card" id="task-card">
-                        <div class="priority-indicator high">High</div>
-                        <header class="task-card-header">
-                            <span class="category-tag">Frontend</span>
-                            <button class="btn-icon" aria-label="Task options">
-                                ⋮
-                            </button>
-                        </header>
-                        <h3 class="task-title">Implement Auth Interceptor</h3>
-                        <ul>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                        </ul>
-
-                        <footer class="task-card-footer">
-                            <span class="task-assignee"
-                                ><strong>Assignee: </strong>Victory
-                                Basoene</span
-                            >
-                        </footer>
-                    </article>
-
-                    <article
-                        class="task-card"
-                        id="task-card-trigger"
-                        onclick="openActivityLog(event)"
-                    >
-                        <div class="priority-indicator medium">Medium</div>
-                        <header class="task-card-header">
-                            <span class="category-tag">Backend</span>
-                            <button class="btn-icon" aria-label="Task options">
-                                ⋮
-                            </button>
-                        </header>
-                        <h3 class="task-title">Implement DB Stabilisation</h3>
-                        <ul>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                        </ul>
-
-                        <footer class="task-card-footer">
-                            <span class="task-assignee"
-                                ><strong>Assignee: </strong>Zeus Basoene</span
-                            >
-                        </footer>
-                    </article>
                 </section>
 
-                <section class="kanban-column">
-                    <header class="column-header">
-                        <h2>In Progress</h2>
-                    </header>
+                <section class="kanban-column" id="in_progress-task-cards">
 
-                    <article
-                        class="task-card"
-                        id="task-card-trigger"
-                        onclick="openActivityLog(event)"
-                    >
-                        <div class="priority-indicator high">High</div>
-                        <header class="task-card-header">
-                            <span class="category-tag">Frontend</span>
-                            <button class="btn-icon" aria-label="Task options">
-                                ⋮
-                            </button>
-                        </header>
-                        <h3 class="task-title">Implement Auth Interceptor</h3>
-                        <ul>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                        </ul>
-
-                        <footer class="task-card-footer">
-                            <span class="task-assignee"
-                                ><strong>Assignee: </strong>Victory
-                                Basoene</span
-                            >
-                        </footer>
-                    </article>
-
-                    <article
-                        class="task-card"
-                        id="task-card-trigger"
-                        onclick="openActivityLog(event)"
-                    >
-                        <div class="priority-indicator medium">Medium</div>
-                        <header class="task-card-header">
-                            <span class="category-tag">Backend</span>
-                            <button class="btn-icon" aria-label="Task options">
-                                ⋮
-                            </button>
-                        </header>
-                        <h3 class="task-title">Implement DB Stabilisation</h3>
-                        <ul>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                        </ul>
-
-                        <footer class="task-card-footer">
-                            <span class="task-assignee"
-                                ><strong>Assignee: </strong>Zeus Basoene</span
-                            >
-                        </footer>
-                    </article>
                 </section>
 
-                <section class="kanban-column">
-                    <header class="column-header">
-                        <h2>To Do</h2>
-                    </header>
+                <section class="kanban-column" id="review-task-cards">
 
-                    <article
-                        class="task-card"
-                        id="task-card-trigger"
-                        onclick="openActivityLog(event)"
-                    >
-                        <div class="priority-indicator high">High</div>
-                        <header class="task-card-header">
-                            <span class="category-tag">Frontend</span>
-                            <button class="btn-icon" aria-label="Task options">
-                                ⋮
-                            </button>
-                        </header>
-                        <h3 class="task-title">Implement Auth Interceptor</h3>
-                        <ul>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                        </ul>
-
-                        <footer class="task-card-footer">
-                            <span class="task-assignee"
-                                ><strong>Assignee: </strong>Victory
-                                Basoene</span
-                            >
-                        </footer>
-                    </article>
-
-                    <article
-                        class="task-card"
-                        id="task-card-trigger"
-                        onclick="openActivityLog(event)"
-                    >
-                        <div class="priority-indicator medium">Medium</div>
-                        <header class="task-card-header">
-                            <span class="category-tag">Backend</span>
-                            <button class="btn-icon" aria-label="Task options">
-                                ⋮
-                            </button>
-                        </header>
-                        <h3 class="task-title">Implement DB Stabilisation</h3>
-                        <ul>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                        </ul>
-
-                        <footer class="task-card-footer">
-                            <span class="task-assignee"
-                                ><strong>Assignee: </strong>Zeus Basoene</span
-                            >
-                        </footer>
-                    </article>
                 </section>
 
-                <section class="kanban-column">
-                    <header class="column-header">
-                        <h2>In Progress</h2>
-                    </header>
+                <section class="kanban-column" id="done-task-cards">
 
-                    <article
-                        class="task-card"
-                        id="task-card-trigger"
-                        onclick="openActivityLog(event)"
-                    >
-                        <div class="priority-indicator high">High</div>
-                        <header class="task-card-header">
-                            <span class="category-tag">Frontend</span>
-                            <button class="btn-icon" aria-label="Task options">
-                                ⋮
-                            </button>
-                        </header>
-                        <h3 class="task-title">Implement Auth Interceptor</h3>
-                        <ul>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                        </ul>
-
-                        <footer class="task-card-footer">
-                            <span class="task-assignee"
-                                ><strong>Assignee: </strong>Victory
-                                Basoene</span
-                            >
-                        </footer>
-                    </article>
-
-                    <article
-                        class="task-card"
-                        id="task-card-trigger"
-                        onclick="openActivityLog(event)"
-                    >
-                        <div class="priority-indicator medium">Medium</div>
-                        <header class="task-card-header">
-                            <span class="category-tag">Backend</span>
-                            <button class="btn-icon" aria-label="Task options">
-                                ⋮
-                            </button>
-                        </header>
-                        <h3 class="task-title">Implement DB Stabilisation</h3>
-                        <ul>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                            <li class="task-list">
-                                Design PostgreSQL tables for Users, Boards, and
-                                Tasks.
-                            </li>
-                        </ul>
-
-                        <footer class="task-card-footer">
-                            <span class="task-assignee"
-                                ><strong>Assignee: </strong>Zeus Basoene</span
-                            >
-                        </footer>
-                    </article>
                 </section>
+
             </div>
 
             <section class="board-gallery-grid">
@@ -706,7 +470,7 @@
                     &times;
                 </button>
                 <h2 id="modal-title">Create New Task</h2>
-                <form class="modal-form">
+                <form class="modal-form" id="task-form">
                     <div class="modal-form area-title">
                         <label for="task-title">Task Title</label>
                         <input
@@ -744,8 +508,11 @@
                             name="description"
                             rows="4"
                             placeholder="Task details..."
+                            required
                         ></textarea>
                     </div>
+
+                    <p class="form-error" id="task-form-error" role="alert"></p>
 
                     <div class="form-actions area-actions">
                         <div class="modal-actions-right">
@@ -753,11 +520,6 @@
                                 type="button"
                                 class="modal-action-btn"
                                 id="modal-cancel"
-                                onclick="
-                                    document.getElementById(
-                                        'task-modal',
-                                    ).style.display = 'none'
-                                "
                             >
                                 Cancel
                             </button>
